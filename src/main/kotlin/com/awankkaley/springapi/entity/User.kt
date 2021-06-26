@@ -9,7 +9,7 @@ data class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(name = "username", unique = true,length = 100)
+    @Column(name = "username", unique = true, length = 100)
     val username: String,
 
     @Column(name = "phone", unique = true, length = 13)
@@ -19,5 +19,8 @@ data class User(
     val email: String,
 
     @Column(name = "password", length = 200)
-    val password: String
+    val password: String,
+
+    @Column(name = "role")
+    val role: String
 )

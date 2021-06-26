@@ -1,5 +1,6 @@
-package com.awankkaley.springapi
+package com.awankkaley.springapi.util
 
+import com.awankkaley.springapi.config.passwordEncoder
 import com.awankkaley.springapi.entity.User
 import com.awankkaley.springapi.model.UserRequest
 import com.awankkaley.springapi.model.UserResponse
@@ -10,7 +11,8 @@ object DataMapper {
             username = input.username,
             email = input.email,
             phone = input.phone,
-            password = input.password,
+            password = passwordEncoder().encode(input.password),
+            role = "user"
         )
     }
 

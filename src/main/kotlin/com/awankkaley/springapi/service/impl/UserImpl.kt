@@ -1,7 +1,6 @@
 package com.awankkaley.springapi.service.impl
 
-import com.awankkaley.springapi.DataMapper
-import com.awankkaley.springapi.entity.User
+import com.awankkaley.springapi.util.DataMapper
 import com.awankkaley.springapi.error.NotFoundException
 import com.awankkaley.springapi.repository.UserRepository
 import com.awankkaley.springapi.model.UserRequest
@@ -9,6 +8,7 @@ import com.awankkaley.springapi.model.UserResponse
 import com.awankkaley.springapi.service.UserService
 import com.awankkaley.springapi.validation.ValidationUtil
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
