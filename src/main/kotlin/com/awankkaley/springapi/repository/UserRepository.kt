@@ -2,8 +2,7 @@ package com.awankkaley.springapi.repository
 
 import com.awankkaley.springapi.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
-import java.util.*
 
 interface UserRepository : JpaRepository<User, Long> {
-    fun findByUsername(username: String): Optional<User>
+    fun findByUsername(username: String): User?
 }

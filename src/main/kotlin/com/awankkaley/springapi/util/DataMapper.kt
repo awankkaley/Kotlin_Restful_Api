@@ -1,9 +1,11 @@
 package com.awankkaley.springapi.util
 
-import com.awankkaley.springapi.config.passwordEncoder
 import com.awankkaley.springapi.entity.User
+import com.awankkaley.springapi.model.LoginResponse
 import com.awankkaley.springapi.model.UserRequest
 import com.awankkaley.springapi.model.UserResponse
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import kotlin.collections.ArrayList
 
 object DataMapper {
     fun mapRequesttoEntity(input: UserRequest): User {
@@ -11,7 +13,7 @@ object DataMapper {
             username = input.username,
             email = input.email,
             phone = input.phone,
-            password = passwordEncoder().encode(input.password),
+            password = BCryptPasswordEncoder().encode(input.password),
             role = "user"
         )
     }
@@ -30,7 +32,7 @@ object DataMapper {
         return result
     }
 
-    fun mapSingleEntityToResponse(input: User): UserResponse {
+    fun mapSingleEntityToUserResponse(input: User): UserResponse {
         return UserResponse(
             id = input.id,
             username = input.username,
@@ -38,4 +40,17 @@ object DataMapper {
             phone = input.phone,
         )
     }
+
+    fun mapEntityToLoginResponse(input: User, token: String, expired: String): LoginResponse {
+        return LoginResponse(
+            id = input.id,
+            username = input.username,
+            email = input.email,
+            phone = input.phone,
+            token = token,
+            expired_at = expired
+        )
+    }
+
+
 }

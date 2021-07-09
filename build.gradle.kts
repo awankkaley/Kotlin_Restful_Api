@@ -24,9 +24,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.security:spring-security-crypto:5.5.1")
-
+	implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+	implementation("io.jsonwebtoken:jjwt-gson:0.11.2")
 	implementation("mysql:mysql-connector-java")
 	runtimeOnly("com.h2database:h2")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

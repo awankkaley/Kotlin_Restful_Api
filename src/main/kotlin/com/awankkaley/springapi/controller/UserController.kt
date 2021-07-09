@@ -1,11 +1,8 @@
 package com.awankkaley.springapi.controller
 
-import com.awankkaley.springapi.model.UserRequest
-import com.awankkaley.springapi.model.UserResponse
-import com.awankkaley.springapi.model.WebResponse
+import com.awankkaley.springapi.model.*
 import com.awankkaley.springapi.service.UserService
 import org.springframework.web.bind.annotation.*
-import javax.validation.constraints.NotBlank
 
 @RestController
 class UserController(val userService: UserService) {
@@ -15,17 +12,27 @@ class UserController(val userService: UserService) {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun createUser(@RequestBody body: UserRequest): WebResponse<List<UserResponse>> {
-        val userResponse = userService.create(body)
-        return WebResponse(data = userResponse)
+    fun createUser(@RequestBody body: UserRequest): List<UserResponse> {
+        return userService.create(body)
     }
 
     @GetMapping(
         value = ["/api/user/{idUser}"],
         produces = ["application/json"]
     )
-    fun getUserDetail(@PathVariable("idUser") idUser: Long): WebResponse<UserResponse> {
+    fun getUserDetail(@PathVariable("idUser") idUser: Long): DataResponse<UserResponse> {
         val result = userService.get(idUser)
-        return WebResponse(data = result)
+        return DataResponse(data = result)
     }
+
+    @PostMapping(
+        value = ["/api/login"],
+        produces = ["application/json"],
+        consumes = ["application/json"]
+    )
+    fun login(@RequestBody body: LoginRequest): DataResponse<LoginResponse> {
+        val userResponse = userService.login(body)
+        return DataResponse(data = userResponse)
+    }
+
 }
